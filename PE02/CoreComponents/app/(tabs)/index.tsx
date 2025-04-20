@@ -1,6 +1,6 @@
 import { ScrollView, Text, View, TextInput, StyleSheet, Image } from "react-native";
 //In this app, I will build an app to show all the requirement course for MSCS program and try to practice core components
-export default function HomeScreen() { //create a fuction to show the app's content
+const HomeScreen=()=>{ //create a fuction to show the app's content
   return (
     <ScrollView style={{backgroundColor:'pink'}}> {/*add ScrollView to enable scrolling the screen */}
       <Image
@@ -68,3 +68,4 @@ const styles=StyleSheet.create({ //creating design for each content or field
       fontWeight: "bold"
     }
 })
+export default HomeScreen

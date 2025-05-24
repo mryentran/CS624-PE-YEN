@@ -16,22 +16,22 @@ export default class Countries extends React.Component {
   navigate = (item) => {
     this.props.navigation.navigate('country', {
       country: item,
-      Countries: this.props.Countries,
+      countries: this.props.countries,
       addLocation: this.props.addLocation,
     });
   };
 
   render() {
-    const { Countries } = this.props;
+    const { countries } = this.props;
     return (
-      <ScrollView contentContainerStyle={[!Countries.length && { flex: 1 }]}>
-        <View style={[!Countries.length && { justifyContent: 'center', flex: 1 }]}>
-          {!Countries.length && <CenterMessage message="No saved Countries!" />}
-          {Countries.map((item, index) => (
+      <ScrollView contentContainerStyle={[!countries?.length && { flex: 1 }]}>
+        <View style={[!countries?.length && { justifyContent: 'center', flex: 1 }]}>
+          {!countries?.length && <CenterMessage message="No saved countries!" />}
+          {countries && countries.map((item, index) => (
             <TouchableWithoutFeedback onPress={() => this.navigate(item)} key={index}>
               <View style={styles.countryContainer}>
-                <Text style={styles.country}>{item.country}</Text>
-                <Text style={styles.Currency}>{item.Currency}</Text>
+                <Text style={styles.country}>{item.name}</Text>
+                <Text style={styles.Currency}>{item.currency}</Text>
               </View>
             </TouchableWithoutFeedback>
           ))}

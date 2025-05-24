@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpaCountry } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import uuid from 'react-native-uuid';
 import { colors } from '../theme';
 
 class AddCountry extends React.Component {
   state = {
-    Country: '',
-    country: '',
+    name: '',
+    currency: '',
   };
 
   onChangeText = (key, value) => {
@@ -14,22 +14,21 @@ class AddCountry extends React.Component {
   };
 
   submit = () => {
-    const { Country, country } = this.state;
-    if (Country === '' || country === '') {
-      alert('please complete form');
+    const { name, currency } = this.state;
+    if (name === '' || currency === '') {
+      alert('Please complete the form');
       return;
     }
     const newCountry = {
-      Country,
-      country,
+      name,
+      currency,
       id: uuid.v4(),
-      locations: [],
     };
-    this.props.addCountry(newCountry); 
+    this.props.addCountry(newCountry);
     this.setState(
       {
-        Country: '',
-        country: '',
+        name: '',
+        currency: '',
       },
       () => {
         this.props.navigation.navigate('Countries');
@@ -40,24 +39,24 @@ class AddCountry extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>Countries</Text>
+        <Text style={styles.heading}>Add Country</Text>
         <TextInput
           placeholder="Country name"
-          onChangeText={(val) => this.onChangeText('Country', val)}
+          onChangeText={(val) => this.onChangeText('name', val)}
           style={styles.input}
-          value={this.state.Country}
+          value={this.state.name}
         />
         <TextInput
-          placeholder="Country name"
-          onChangeText={(val) => this.onChangeText('country', val)}
+          placeholder="Currency"
+          onChangeText={(val) => this.onChangeText('currency', val)}
           style={styles.input}
-          value={this.state.country}
+          value={this.state.currency}
         />
-        <TouchableOpaCountry onPress={this.submit}>
+        <TouchableOpacity onPress={this.submit}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Add Country</Text>
           </View>
-        </TouchableOpaCountry>
+        </TouchableOpacity>
       </View>
     );
   }
